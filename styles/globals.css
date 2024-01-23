@@ -1,27 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.menu {
+  @apply text-sm hover:text-primary-dark transition delay-200 ease-in-out duration-1000 hover:border-b-primary-dark hover:border-b-2 focus:text-primary-dark focus:border-primary-dark hover:cursor-pointer hover:font-extrabold hover:scale-105;
+}
+.menu-block {
+  @apply hover:text-primary-dark transition delay-200 ease-in-out duration-1000 border-b border-b-gray-800 pb-2 pt-2 hover:cursor-pointer flex hover:font-extrabold hover:scale-95;
+}
+.icon:hover {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(156 163 175));
+  filter: opacity(0.5) drop-shadow(0 0 0 rgb(156 163 175));
+}
+.bg-icon {
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+}
+input {
+  @apply w-full mt-4 py-1 pl-2 text-secondary-dark border rounded-md w-full focus:outline-none focus:ring focus:ring-secondary-dark text-base leading-9 tracking-wide font-thin focus:opacity-50 focus:bg-gray-100 transition delay-150 ease-in-out duration-700;
+}
+select {
+  @apply w-full mt-4 py-1 pl-2 text-secondary-dark border rounded-md w-full focus:outline-none focus:ring focus:ring-secondary-dark text-base leading-9 tracking-wide font-thin focus:opacity-50 focus:bg-gray-100 transition delay-150 ease-in-out duration-700;
+}
+option {
+  @apply w-full mt-4 py-1 pl-2 text-secondary-dark border rounded-md w-full focus:outline-none focus:ring focus:ring-secondary-dark text-base leading-9 tracking-wide font-thin focus:opacity-50 focus:bg-gray-100 transition delay-150 ease-in-out duration-700;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bg {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(75 85 99));
+  filter: opacity(0.5) drop-shadow(0 0 0 rgb(75 85 99));
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg-i {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 rgb(0 0 0));
+  filter: opacity(0.5) drop-shadow(0 0 0 rgb(0 0 0));
+}
+.ps-menuitem-root {
+  @apply hover:text-gray-600;
+}
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border-bottom: 2px solid #c0bcbc;  */
+}
+.hamburgerMenu {
+  cursor: pointer;
+  border: none;
+  padding: 10px 0;
+  background: none;
+}
+.ps-menu-root {
+  width: 100%;
 }
