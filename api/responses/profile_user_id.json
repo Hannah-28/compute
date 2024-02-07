@@ -1,0 +1,18 @@
+{
+  "user": {
+    "default_project_id": "f44ef5edfcc040908807097c234690f8",
+    "description": "James Doe user",
+    "domain_id": "default",
+    "email": "dan@gmil.com",
+    "enabled": true,
+    "id": "083c7e3db7e44ac78c50761a92f94c05",
+    "links": {
+      "self": "http://10.1.223.4:5000/v3/users/083c7e3db7e44ac78c50761a92f94c05"
+    },
+    "name": "dan",
+    "options": {
+      "ignore_password_expiry": true
+    },
+    "password_expires_at": null
+  }
+}

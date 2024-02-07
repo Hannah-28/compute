@@ -1,0 +1,13 @@
+{
+  "flavors": {
+    "keypairs": [
+      {
+        "keypair": {
+          "fingerprint": "77:d1:4f:19:c7:35:95:1c:8d:64:20:8e:25:8a:24:2e",
+          "name": "myKey",
+          "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6Sp3ae8184EJqy+CK0yi5T5IQ/pA5sTXReXlMKbgyHdjOcqkCaJwG+NaiB93rg1+/Dte5MJ2A1BGRxb3wZJNfIYdCpZbHtfiPV35aH39i00yjoD7f9gB4VdFqTvB8/k+tXKvYQaaxMH5v3vzb114wrkw11O4EHqoJKiYAUxJOR+2NoZhoVX8rjESokb1H842xzubfAiAWinakOd0fHuACTwIo4zkTl7xh4+iwuTKTLxze8Wbo5e1keGNfKInjOFWskajJe4HrDH2eqHaR8X58ogzudSIMsk8toQ8iqJFokSls2GZO3girT2skM6QdgAXTTPnx26c6EuSE3BPWUIIB Generated-by-Nova"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "images": {
+    "volume": {
+      "attachments": [],
+      "availability_zone": "nova",
+      "bootable": "false",
+      "consistencygroup_id": null,
+      "created_at": "2024-02-06T18:51:25.000000",
+      "description": "Test description",
+      "encrypted": false,
+      "id": "062948f9-5ea1-46b1-b7c0-dd16d41a6dee",
+      "links": [
+        {
+          "href": "http://10.1.223.4:8776/v3/f44ef5edfcc040908807097c234690f8/volumes/062948f9-5ea1-46b1-b7c0-dd16d41a6dee",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.1.223.4:8776/f44ef5edfcc040908807097c234690f8/volumes/062948f9-5ea1-46b1-b7c0-dd16d41a6dee",
+          "rel": "bookmark"
+        }
+      ],
+      "metadata": {},
+      "multiattach": false,
+      "name": "test1",
+      "os-vol-tenant-attr:tenant_id": "f44ef5edfcc040908807097c234690f8",
+      "replication_status": null,
+      "size": 10,
+      "snapshot_id": null,
+      "source_volid": null,
+      "status": "available",
+      "updated_at": "2024-02-06T18:51:26.000000",
+      "user_id": "083c7e3db7e44ac78c50761a92f94c05",
+      "volume_type": "__DEFAULT__"
+    }
+  }
+}

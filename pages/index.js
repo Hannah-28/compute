@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <Layout title="Home">
-      <div className="bg-secondary-light text-center mt-18 text-secondary-dark px-4 md:px-10 pt-52 space-y-5 md:space-y-7 xl:space-y-10 text-xl md:text-large xl:text-extra">
+      <div className="bg-secondary-light text-center h-screen mt-18 text-secondary-dark px-4 md:px-10 pt-52 space-y-5 md:space-y-7 xl:space-y-10 text-xl md:text-large xl:text-extra">
         <div className="font-medium">
           <h1>WELCOME</h1>
           </div>

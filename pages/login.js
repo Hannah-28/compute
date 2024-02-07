@@ -1,19 +1,58 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Layout from '@/components/Layout';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, loginCleanup } from '../store/actions/login';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const formikRef = useRef();
+  const dispatch = useDispatch();
+  const loginState = useSelector((s) => s.login);
+  const router = useRouter();
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .trim()
-      .required('Email Address is required')
-      .email('Fill in a valid email address'),
+    username: Yup.string().trim().required('Username is required'),
     password: Yup.string().trim().required('Password is required'),
   });
+
+  useEffect(() => {
+    if (loginState.isSuccessful) {
+      if (formikRef.current) {
+        formikRef.current.resetForm();
+      }
+      toast.success('Welcome back!!!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setTimeout(() => {
+        dispatch(loginCleanup());
+        router.push('/request');
+      }, 3000);
+    } else if (loginState.error) {
+      toast.error(`Your account doesn't exist or incorrect password`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      dispatch(loginCleanup());
+    }
+  }, [dispatch, loginState, router]);
 
   return (
     <Layout title="Login">
@@ -23,10 +62,11 @@ export default function Login() {
 
           <Formik
             initialValues={{
-              email: '',
+              username: '',
               password: '',
             }}
-            onSubmit={({ setSubmitting }) => {
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch(login(values));
               setSubmitting(false);
             }}
             validationSchema={validationSchema}
@@ -44,15 +84,15 @@ export default function Login() {
               <>
                 <div className="mb-4">
                   <input
-                    name="email"
-                    type="email"
-                    placeholder="Email Address"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
                     value={values.votersID}
-                    onChange={handleChange('email')}
-                    onBlur={handleBlur('email')}
+                    onChange={handleChange('username')}
+                    onBlur={handleBlur('username')}
                   />
-                  {errors.email && touched.email ? (
-                    <p style={{ color: 'red' }}>{errors.email}</p>
+                  {errors.username && touched.username ? (
+                    <p style={{ color: 'red' }}>{errors.username}</p>
                   ) : null}
                 </div>
                 <div className="mb-10">
@@ -72,7 +112,7 @@ export default function Login() {
                   type="submit"
                   className="border-secondary hover:border-secondary-dark text-white hover:bg-secondary-dark px-8 py-2 rounded-md bg-secondary text-base font-medium hover:cursor-pointer"
                   onClick={handleSubmit}
-                  disabled={!isValid}
+                  disabled={!isValid || loginState.isLoading}
                 >
                   Login
                 </button>
@@ -95,6 +135,19 @@ export default function Login() {
           </Formik>
         </form>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Layout>
   );
 }

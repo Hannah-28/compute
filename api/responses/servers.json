@@ -1,0 +1,32 @@
+{
+  "servers": [
+    {
+      "id": "0cea593b-ddb2-421a-8a20-9bf735cc3261",
+      "links": [
+        {
+          "href": "http://10.1.223.4:8774/v2.1/servers/0cea593b-ddb2-421a-8a20-9bf735cc3261",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.1.223.4:8774/servers/0cea593b-ddb2-421a-8a20-9bf735cc3261",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "test3"
+    },
+    {
+      "id": "0cea593b-ddb2-421a-8a20-9bf735cc32sdsd61",
+      "links": [
+        {
+          "href": "http://10.1.223.4:8774/v2.1/servers/0cea593b-ddb2-421a-8a20-9bf735cc3261",
+          "rel": "self"
+        },
+        {
+          "href": "http://10.1.223.4:8774/servers/0cea593b-ddb2-421a-8a20-9bf735cc3261",
+          "rel": "bookmark"
+        }
+      ],
+      "name": "test1"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "server": {
+    "OS-DCF:diskConfig": "MANUAL",
+    "adminPass": "f9a3QW8qxvkG",
+    "id": "0b27f45d-2d78-460f-b310-7405f923dd7a",
+    "links": [
+      {
+        "href": "http://10.1.223.4:8774/v2.1/servers/0b27f45d-2d78-460f-b310-7405f923dd7a",
+        "rel": "self"
+      },
+      {
+        "href": "http://10.1.223.4:8774/servers/0b27f45d-2d78-460f-b310-7405f923dd7a",
+        "rel": "bookmark"
+      }
+    ],
+    "security_groups": [
+      {
+        "name": "default"
+      }
+    ]
+  }
+}

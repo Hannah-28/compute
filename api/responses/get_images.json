@@ -1,0 +1,63 @@
+{
+  "images": {
+    "first": "/v2/images",
+    "images": [
+      {
+        "checksum": "5f1083131fa070bf9f23c2f1f5c7c540",
+        "container_format": "bare",
+        "created_at": "2024-01-31T21:52:52Z",
+        "description": "Ubuntu 22.04 LTS",
+        "disk_format": "qcow2",
+        "file": "/v2/images/8cd9cc0f-cd77-4e97-8c46-2905a4181093/file",
+        "id": "8cd9cc0f-cd77-4e97-8c46-2905a4181093",
+        "min_disk": 5,
+        "min_ram": 0,
+        "name": "Ubuntu 22 LTS",
+        "os_hash_algo": "sha512",
+        "os_hash_value": "e6babe6d5608cb9bfc9132708c2f13c11f467a3b0460373d0ab278aac8797b2c0eef73ccc1a8546679fe6ba7091478ad57d87150ddd94d1df7a987d8e7d34bc9",
+        "os_hidden": false,
+        "owner": "44152c952dd44290a2a3442f1da5d801",
+        "protected": false,
+        "schema": "/v2/schemas/image",
+        "self": "/v2/images/8cd9cc0f-cd77-4e97-8c46-2905a4181093",
+        "size": 670957568,
+        "status": "active",
+        "stores": "file",
+        "tags": [],
+        "updated_at": "2024-02-01T19:42:32Z",
+        "virtual_size": 2361393152,
+        "visibility": "public"
+      },
+      {
+        "checksum": "0c839612eb3f2469420f2ccae990827f",
+        "container_format": "bare",
+        "created_at": "2024-01-31T21:42:03Z",
+        "disk_format": "qcow2",
+        "file": "/v2/images/4edd2347-d89d-4f32-a138-5666ff1d5b69/file",
+        "id": "4edd2347-d89d-4f32-a138-5666ff1d5b69",
+        "min_disk": 0,
+        "min_ram": 0,
+        "name": "cirros",
+        "os_hash_algo": "sha512",
+        "os_hash_value": "df88bac2791254f68941229792539621516bd480aa3d6fe4c0ca16057393d024a4944d644959f323dc01a25e3417c0b581776ab3c8db8da542039f2a67230579",
+        "os_hidden": false,
+        "os_type": "linux",
+        "owner": "44152c952dd44290a2a3442f1da5d801",
+        "owner_specified.openstack.md5": "",
+        "owner_specified.openstack.object": "images/cirros",
+        "owner_specified.openstack.sha256": "",
+        "protected": false,
+        "schema": "/v2/schemas/image",
+        "self": "/v2/images/4edd2347-d89d-4f32-a138-5666ff1d5b69",
+        "size": 21233664,
+        "status": "active",
+        "stores": "file",
+        "tags": [],
+        "updated_at": "2024-01-31T21:42:03Z",
+        "virtual_size": 117440512,
+        "visibility": "public"
+      }
+    ],
+    "schema": "/v2/schemas/images"
+  }
+}

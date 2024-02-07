@@ -1,0 +1,10 @@
+{
+  "error": "New User creation failed. Cannot create a project for new user. Please contact administrator.",
+  "message": {
+    "error": {
+      "code": 409,
+      "message": "Conflict occurred attempting to store project - it is not permitted to have two projects with either the same name or same id in the same domain: name is dan, project id 0e5f7c0e2d4949589d9616df32100267.",
+      "title": "Conflict"
+    }
+  }
+}
