@@ -4,14 +4,25 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 function UserSidebar({ title, children }) {
   const [collapsed, setCollapsed] = useState(false);
   const [, setMobileNavOpen] = useState(false);
   const [showMobileNavMenu, setShowMobileNavMenu] = useState(false);
+  const router = useRouter();
+  const isLoggedIn = localStorage.getItem('authToken');
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
+  };
+
+  if (!isLoggedIn) {
+    router.push('/login');
+  }
+  const logoutUser = () => {
+    localStorage.clear();
+    router.push('/login');
   };
 
   useEffect(() => {
@@ -172,6 +183,23 @@ function UserSidebar({ title, children }) {
                 </MenuItem>
               </Link>
             </SubMenu>
+            {/* <Link href="/billing"> */}
+            <MenuItem
+              icon={
+                <Image
+                  src="/power.png"
+                  width={20}
+                  height={20}
+                  alt="billing logo"
+                  className="bg"
+                />
+              }
+              onClick={logoutUser}
+            >
+              {' '}
+              Log-out
+            </MenuItem>
+            {/* </Link> */}
           </Menu>
         </Sidebar>
 

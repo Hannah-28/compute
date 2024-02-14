@@ -16,7 +16,7 @@ const AxiosCall = async (requestObj) => {
   const token = localStorage.getItem('authToken');
 
   const headers = {
-    Authorization: `Bearer ` + token,
+    'X-Auth-Token': token,
     'Content-Type': contentType || 'application/json',
   };
 

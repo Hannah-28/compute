@@ -11,3 +11,10 @@ export const login = {
   data: null,
   error: null,
 };
+
+export const getProfile = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null
+};

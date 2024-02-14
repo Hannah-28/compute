@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, loginCleanup } from '../store/actions/login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Router from 'next/router';
 
 export default function Login() {
   const formikRef = useRef();
@@ -20,6 +21,7 @@ export default function Login() {
     password: Yup.string().trim().required('Password is required'),
   });
 
+  const id = loginState?.data?.user?.id;
   useEffect(() => {
     if (loginState.isSuccessful) {
       if (formikRef.current) {
@@ -37,10 +39,16 @@ export default function Login() {
       });
       setTimeout(() => {
         dispatch(loginCleanup());
-        router.push('/request');
+        Router.push({
+          pathname: '/profile',
+          query: {
+            id,
+          },
+        });
       }, 3000);
     } else if (loginState.error) {
-      toast.error(`Your account doesn't exist or incorrect password`, {
+      // Your account doesn't exist or incorrect password
+      toast.error(`${loginState.error}`, {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -52,7 +60,7 @@ export default function Login() {
       });
       dispatch(loginCleanup());
     }
-  }, [dispatch, loginState, router]);
+  }, [dispatch, loginState, router, id]);
 
   return (
     <Layout title="Login">
@@ -122,12 +130,6 @@ export default function Login() {
                     className="text-secondary hover:underline hover:text-secondary-dark"
                   >
                     REGISTER?
-                  </Link>
-                  <Link
-                    href="/forgot-password"
-                    className="text-secondary hover:underline hover:text-secondary-dark"
-                  >
-                    FORGOT PASSWORD?
                   </Link>
                 </div>
               </>
