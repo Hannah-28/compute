@@ -74,7 +74,7 @@ function UserSidebar({ title, children }) {
             </Menu>
           </div>
           <Menu>
-            <Link href="/request">
+            <Link href="/deploy">
               <MenuItem
                 icon={
                   <Image

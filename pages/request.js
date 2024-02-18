@@ -11,7 +11,7 @@ export default function Request() {
   });
  
   return (
-    <UserSidebar title="Profile">
+    <UserSidebar title="Request">
       <div className="h-auto py-5 px-3 my-auto">
         <>
           <h1 className="mb-8 text-2xl font-bold">Request VM Creation</h1>

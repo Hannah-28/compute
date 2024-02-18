@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, loginCleanup } from '../store/actions/login';
+import { login, loginCleanup } from '@/store/actions/login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router';

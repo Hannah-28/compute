@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserSidebar from '@/components/UserSidebar';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProfile, getProfileCleanup } from '../store/actions/get-profile';
+import { getProfile, getProfileCleanup } from '@/store/actions/get-profile';
 
 export default function Profile() {
   const router = useRouter();
@@ -63,62 +63,6 @@ export default function Profile() {
                   {profile?.user?.name}
                 </p>
               </div>
-
-              {/* <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Last Name</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  Olurombi
-                </p>
-              </div> */}
-
-              {/* <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Phone Number</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  07055625874
-                </p>
-              </div> */}
 
               <div
                 className="my-4"
