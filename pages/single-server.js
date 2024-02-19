@@ -74,7 +74,7 @@ export default function SingleServer() {
       setStop(stopSingleServerState.data);
       toast.success('Server stopped successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -84,8 +84,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(stopSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (stopSingleServerState.error) {
       toast.error(`${stopSingleServerState.error}`, {
         position: 'top-center',
@@ -113,7 +113,7 @@ export default function SingleServer() {
       setStart(startSingleServerState.data);
       toast.success('Server starts successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -123,8 +123,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(startSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (startSingleServerState.error) {
       toast.error(`${startSingleServerState.error}`, {
         position: 'top-center',
@@ -152,7 +152,7 @@ export default function SingleServer() {
       setRebootHard(rebootHardSingleServerState.data);
       toast.success('Server reboot hard successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -162,8 +162,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(rebootHardSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (rebootHardSingleServerState.error) {
       toast.error(`${rebootHardSingleServerState.error}`, {
         position: 'top-center',
@@ -192,7 +192,7 @@ export default function SingleServer() {
       setRebootSoft(rebootSoftSingleServerState.data);
       toast.success('Server reboot soft successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -202,8 +202,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(rebootSoftSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (rebootSoftSingleServerState.error) {
       toast.error(`${rebootSoftSingleServerState.error}`, {
         position: 'top-center',
@@ -243,7 +243,7 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(deleteSingleServerCleanup());
-        router.push('/single-server');
+        router.push('/deploy');
       }, 3000);
     } else if (deleteSingleServerState.error) {
       toast.error(`${deleteSingleServerState.error}`, {
