@@ -6,7 +6,7 @@ export const startSingleServerStart = () => ({
   type: types.START_SINGLE_SERVER_START,
 });
 
-export const startpSingleServerSuccess = (payload) => ({
+export const startSingleServerSuccess = (payload) => ({
   type: types.START_SINGLE_SERVER_SUCCESS,
   payload,
 });
