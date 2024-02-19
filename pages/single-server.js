@@ -21,7 +21,11 @@ import {
 import {
   rebootSoftSingleServer,
   rebootSoftSingleServerCleanup,
-} from '@/store/actions/reboot-soft-single.server';
+} from '@/store/actions/reboot-soft-single-server';
+import {
+  deleteSingleServer,
+  deleteSingleServerCleanup,
+} from '@/store/actions/delete-single-server';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -42,6 +46,11 @@ export default function SingleServer() {
     (s) => s.rebootSoftSingleServer
   );
   const [, setRebootSoft] = useState([]);
+  
+  const deleteSingleServerState = useSelector(
+    (s) => s.deleteSingleServer
+  );
+  const [, setDeleteSingleServer] = useState([]);
 
   const {
     query: { id },
@@ -218,6 +227,43 @@ export default function SingleServer() {
     };
     dispatch(rebootSoftSingleServer(id, body));
   };
+
+  useEffect(() => {
+    if (deleteSingleServerState.isSuccessful) {
+      setDeleteSingleServer(deleteSingleServerState.data);
+      toast.success('Server reboot soft successfully!!!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setTimeout(() => {
+        dispatch(deleteSingleServerCleanup());
+        router.push('/single-server');
+      }, 3000);
+    } else if (deleteSingleServerState.error) {
+      toast.error(`${deleteSingleServerState.error}`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      dispatch(deleteSingleServerCleanup());
+    }
+  }, [deleteSingleServerState, dispatch, router]);
+
+  const deleteServer = () => {
+    dispatch(deleteSingleServer(id));
+  };
+  
   const keysToRender = [
     { path: 'server.name', displayName: 'Server Name' },
     { path: 'server.key_name', displayName: 'Key Name' },
@@ -314,6 +360,13 @@ export default function SingleServer() {
                   onClick={rebootHard}
                 >
                   Reboot Hard
+                </button>
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={deleteServer}
+                >
+                  Delete
                 </button>
               </div>
             </div>
