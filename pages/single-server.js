@@ -290,13 +290,6 @@ export default function SingleServer() {
                 <button
                   type="button"
                   className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
-                  onClick={stop}
-                >
-                  Stop
-                </button>
-                <button
-                  type="button"
-                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
                   onClick={start}
                 >
                   Start
@@ -304,9 +297,9 @@ export default function SingleServer() {
                 <button
                   type="button"
                   className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
-                  onClick={rebootHard}
+                  onClick={stop}
                 >
-                  Reboot Hard
+                  Stop
                 </button>
                 <button
                   type="button"
@@ -314,6 +307,13 @@ export default function SingleServer() {
                   onClick={rebootSoft}
                 >
                   Reboot Soft
+                </button>
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={rebootHard}
+                >
+                  Reboot Hard
                 </button>
               </div>
             </div>
