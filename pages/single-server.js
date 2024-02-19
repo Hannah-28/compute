@@ -282,9 +282,40 @@ export default function SingleServer() {
                     >
                       {typeof value === 'object' ? JSON.stringify(value) : value}
                     </p>
+                  
                   </div>
                 );
               })}
+              <div className="flex flex-wrap gap-7 w-full mt-10 justify-center">
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={stop}
+                >
+                  Stop
+                </button>
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={start}
+                >
+                  Start
+                </button>
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={rebootHard}
+                >
+                  Reboot Hard
+                </button>
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={rebootSoft}
+                >
+                  Reboot Soft
+                </button>
+              </div>
             </div>
           </>
         )}
