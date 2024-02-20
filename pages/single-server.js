@@ -21,7 +21,11 @@ import {
 import {
   rebootSoftSingleServer,
   rebootSoftSingleServerCleanup,
-} from '@/store/actions/reboot-soft-single.server';
+} from '@/store/actions/reboot-soft-single-server';
+import {
+  deleteSingleServer,
+  deleteSingleServerCleanup,
+} from '@/store/actions/delete-single-server';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -42,6 +46,11 @@ export default function SingleServer() {
     (s) => s.rebootSoftSingleServer
   );
   const [, setRebootSoft] = useState([]);
+  
+  const deleteSingleServerState = useSelector(
+    (s) => s.deleteSingleServer
+  );
+  const [, setDeleteSingleServer] = useState([]);
 
   const {
     query: { id },
@@ -65,7 +74,7 @@ export default function SingleServer() {
       setStop(stopSingleServerState.data);
       toast.success('Server stopped successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -75,8 +84,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(stopSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (stopSingleServerState.error) {
       toast.error(`${stopSingleServerState.error}`, {
         position: 'top-center',
@@ -104,7 +113,7 @@ export default function SingleServer() {
       setStart(startSingleServerState.data);
       toast.success('Server starts successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -114,8 +123,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(startSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (startSingleServerState.error) {
       toast.error(`${startSingleServerState.error}`, {
         position: 'top-center',
@@ -143,7 +152,7 @@ export default function SingleServer() {
       setRebootHard(rebootHardSingleServerState.data);
       toast.success('Server reboot hard successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -153,8 +162,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(rebootHardSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (rebootHardSingleServerState.error) {
       toast.error(`${rebootHardSingleServerState.error}`, {
         position: 'top-center',
@@ -178,13 +187,12 @@ export default function SingleServer() {
     };
     dispatch(rebootHardSingleServer(id, body));
   };
-
   useEffect(() => {
     if (rebootSoftSingleServerState.isSuccessful) {
       setRebootSoft(rebootSoftSingleServerState.data);
       toast.success('Server reboot soft successfully!!!', {
         position: 'top-center',
-        autoClose: 3000,
+        autoClose: 6000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -194,8 +202,8 @@ export default function SingleServer() {
       });
       setTimeout(() => {
         dispatch(rebootSoftSingleServerCleanup());
-        router.push('/single-server');
-      }, 3000);
+        window.location.reload();
+      }, 6000);
     } else if (rebootSoftSingleServerState.error) {
       toast.error(`${rebootSoftSingleServerState.error}`, {
         position: 'top-center',
@@ -220,212 +228,118 @@ export default function SingleServer() {
     dispatch(rebootSoftSingleServer(id, body));
   };
 
-  console.log(singleServer.server, 'singleServer');
+  useEffect(() => {
+    if (deleteSingleServerState.isSuccessful) {
+      setDeleteSingleServer(deleteSingleServerState.data);
+      toast.success('Server reboot soft successfully!!!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setTimeout(() => {
+        dispatch(deleteSingleServerCleanup());
+        router.push('/deploy');
+      }, 3000);
+    } else if (deleteSingleServerState.error) {
+      toast.error(`${deleteSingleServerState.error}`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      dispatch(deleteSingleServerCleanup());
+    }
+  }, [deleteSingleServerState, dispatch, router]);
+
+  const deleteServer = () => {
+    dispatch(deleteSingleServer(id));
+  };
+  
+  const keysToRender = [
+    { path: 'server.name', displayName: 'Server Name' },
+    { path: 'server.key_name', displayName: 'Key Name' },
+    { path: 'server.OS-DCF:diskConfig', displayName: 'Disk Config' },
+    { path: 'server.OS-EXT-AZ:availability_zone', displayName: 'Availability Zone' },
+    { path: 'server.OS-EXT-STS:vm_state', displayName: 'VM State' },
+    { path: 'server.addresses.External[0].addr', displayName: 'External Address' },
+    { path: 'server.flavor.id', displayName: 'Flavor ID' },
+    { path: 'server.created', displayName: 'Server Created' },
+    { path: 'server.os-extended-volumes:volumes_attached[0].id', displayName: 'Volume Attached ID' },
+  ];
+  
   return (
     <UserSidebar title="Server Details">
       <div className="h-screen py-5 px-3 my-auto">
-        {singleServer.length === 0 ? (
-          <>
-            <div className="spinner-border" role="status"></div>
-          </>
+        {Object.keys(singleServer).length === 0 ? (
+          <div className="spinner-border" role="status"></div>
         ) : (
           <>
             <h1 className="mb-8 text-2xl font-bold">Server Details</h1>
             <div className="text-xs lg:text-base">
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Name</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server?.name}
-                </p>
-              </div>
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Key Name</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server?.key_name}
-                </p>
-              </div>
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">OS-DCF:diskConfig</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server['OS-DCF:diskConfig']}
-                </p>
-              </div>
-
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">OS-EXT-AZ:availability_zone</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server['OS-EXT-AZ:availability_zone']}
-                </p>
-              </div>
-
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">OS-EXT-STS:power_state</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server['OS-EXT-STS:power_state']}
-                </p>
-              </div>
-
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Status</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server?.status}
-                </p>
-              </div>
-
-              <div
-                className="my-4"
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <h6 className="font-semibold">Progress</h6>
-                <p
-                  style={{
-                    border: '1px solid transparent',
-                    borderRadius: '0.5em',
-                    background: '#0f1624',
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'white',
-                    padding: '0.3em 0.6em',
-                    fontSize: '1em',
-                  }}
-                  className="font-thin"
-                >
-                  {singleServer?.server?.progress}
-                </p>
-              </div>
+              {keysToRender.map(({ path, displayName }) => {
+                // Split the keyPath by '.' to access nested properties
+                const pathKeys = path.split('.');
+                // Access the nested property
+                let value = singleServer;
+                pathKeys.forEach((key) => {
+                  if (key.includes('[')) {
+                    const index = parseInt(key.match(/\[(.*?)\]/)[1]);
+                    const arrayKey = key.substring(0, key.indexOf('['));
+                    value = value?.[arrayKey]?.[index];
+                  } else {
+                    value = value?.[key];
+                  }
+                });
+  
+                return (
+                  <div
+                    key={path}
+                    className="my-4"
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      width: '100%',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <h6 className="font-semibold">{displayName}</h6>
+                    <p
+                      style={{
+                        border: '1px solid transparent',
+                        borderRadius: '0.5em',
+                        background: '#0f1624',
+                        display: 'flex',
+                        alignItems: 'center',
+                        color: 'white',
+                        padding: '0.3em 0.6em',
+                        fontSize: '1em',
+                      }}
+                      className="font-thin"
+                    >
+                      {typeof value === 'object' ? JSON.stringify(value) : value}
+                    </p>
+                  
+                  </div>
+                );
+              })}
               <div className="flex flex-wrap gap-7 w-full mt-10 justify-center">
+                <button
+                  type="button"
+                  className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
+                  onClick={start}
+                >
+                  Start
+                </button>
                 <button
                   type="button"
                   className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
@@ -436,9 +350,9 @@ export default function SingleServer() {
                 <button
                   type="button"
                   className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
-                  onClick={start}
+                  onClick={rebootSoft}
                 >
-                  Start
+                  Reboot Soft
                 </button>
                 <button
                   type="button"
@@ -450,9 +364,9 @@ export default function SingleServer() {
                 <button
                   type="button"
                   className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
-                  onClick={rebootSoft}
+                  onClick={deleteServer}
                 >
-                  Reboot Soft
+                  Delete
                 </button>
               </div>
             </div>
