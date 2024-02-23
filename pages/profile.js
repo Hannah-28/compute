@@ -10,6 +10,7 @@ export default function Profile() {
   const getProfileState = useSelector((s) => s.getProfile);
   const [profile, setProfile] = useState([]);
 
+  
   const {
     query: { id },
   } = router;

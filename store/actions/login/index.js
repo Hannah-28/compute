@@ -30,6 +30,7 @@ export const login = (payload) => async (dispatch) => {
     };
     const data = await AxiosCall(requestObj);
     localStorage.setItem('authToken', data["headers"]["x-subject-token"]);
+    localStorage.setItem('profileID', data["body"]["token"]["user"]["id"]);
     dispatch(loginSuccess(data));
   } catch (err) {
     console.log(err);

@@ -21,7 +21,7 @@ export default function Login() {
     password: Yup.string().trim().required('Password is required'),
   });
 
-  const id = loginState?.data?.body?.token?.user?.id;
+  const id = localStorage.getItem('profileID');
   useEffect(() => {
     if (loginState.isSuccessful) {
       if (formikRef.current) {

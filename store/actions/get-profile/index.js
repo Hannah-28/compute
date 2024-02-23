@@ -23,7 +23,7 @@ export const getProfileCleanup = () => ({
 export const getProfile = (id) => async (dispatch) => {
   try {
     dispatch(getProfileStart());
-
+    const id = localStorage.getItem('profileID');
     const requestObj = {
       path: `/profile/${id}`,
       method: 'GET',
