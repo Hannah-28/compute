@@ -231,7 +231,7 @@ export default function SingleServer() {
   useEffect(() => {
     if (deleteSingleServerState.isSuccessful) {
       setDeleteSingleServer(deleteSingleServerState.data);
-      toast.success('Server reboot soft successfully!!!', {
+      toast.success('Server deleted successfully!!!', {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
