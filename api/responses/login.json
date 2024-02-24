@@ -1,1 +1,263 @@
-{"user": {"domain": {"id": "default", "name": "Default"}, "id": "ba594d39b2214418933bcd704dcb881e", "name": "dan", "password_expires_at": null}, "project": {"domain": {"id": "default", "name": "Default"}, "id": "d9592e58693b440e992948894206fe9d", "name": "dan"}, "roles": [{"id": "91b01030673f40bd872c64631459e876", "name": "manager"}, {"id": "2ee48682eaaa4a1cbb53bdcb0a5e73e6", "name": "member"}, {"id": "ef61fe1055874f23b3901b2455d93a39", "name": "reader"}]}
+{
+  "body": {
+    "token": {
+      "audit_ids": ["K_xZpYggS02vJ3Nhpy0cCQ"],
+      "catalog": [
+        {
+          "endpoints": [
+            {
+              "id": "728a69a1efa546abadb5fc4fcc57ea69",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9292"
+            },
+            {
+              "id": "9560b843a59242a7a2a4045690017819",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9292"
+            }
+          ],
+          "id": "284aca4369ac40b984f82e046acecb7b",
+          "name": "glance",
+          "type": "image"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "c0761db9082848f8aa530c0a9aa94d5f",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9511/v1"
+            },
+            {
+              "id": "eb9182be8aab4a4fbfafd36bc1e76472",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9511/v1"
+            }
+          ],
+          "id": "328b9d85cee049ca851f52cc91d30316",
+          "name": "magnum",
+          "type": "container-infra"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "999507f324004476b6e89324217b7940",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8780"
+            },
+            {
+              "id": "fd4ab6b15ed9472e9635c1b0eaa6dc3d",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8780"
+            }
+          ],
+          "id": "404122952dd44f2dabc510bf9d7e7fcd",
+          "name": "placement",
+          "type": "placement"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "49bdd56de475409fb62a429e7d38ff06",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8774/v2.1"
+            },
+            {
+              "id": "c014d9eab38e49dc82ee1bfb8b09b81f",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8774/v2.1"
+            }
+          ],
+          "id": "4600af0177a54bc0ba59f2a645a705ce",
+          "name": "nova",
+          "type": "compute"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "7de6e3f2ad944e1f84addfde75a97948",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8889"
+            },
+            {
+              "id": "e0650474fa0043dbb39e6bfad218d3d0",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8889"
+            }
+          ],
+          "id": "54c76b1910f3409898ca87e36f755765",
+          "name": "cloudkitty",
+          "type": "rating"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "22611100fb3742ab82e72c362a0ba5c1",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8000/v1"
+            },
+            {
+              "id": "61b88de09870417b8e6d1369ccc0e543",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8000/v1"
+            }
+          ],
+          "id": "5ffb2e9b7c204dd8a180216d8ab60aba",
+          "name": "heat-cfn",
+          "type": "cloudformation"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "3cc3836e82194bf6a81602a3c60100b8",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8004/v1/98c2e0f8ad1849a4b462c81f370c8eb6"
+            },
+            {
+              "id": "a59bf62dfd824ed09388bfcb3dd9d425",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8004/v1/98c2e0f8ad1849a4b462c81f370c8eb6"
+            }
+          ],
+          "id": "64fde0aed8df4d48a88217a3173e7d01",
+          "name": "heat",
+          "type": "orchestration"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "177b5ef30e6446f19c40d0340dabc531",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8776/v3/98c2e0f8ad1849a4b462c81f370c8eb6"
+            },
+            {
+              "id": "21ae361ae3b9428f98cd8e5f69d32ef5",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:8776/v3/98c2e0f8ad1849a4b462c81f370c8eb6"
+            }
+          ],
+          "id": "7d0193c103ca499f9a614a7e43544a4d",
+          "name": "cinderv3",
+          "type": "volumev3"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "27d22427a97b4636a97a1d622d4dc7b2",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:5000"
+            },
+            {
+              "id": "bd8c61af36204277ae3919baffdeef04",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:5000"
+            }
+          ],
+          "id": "958bdc94aced454f92bca4d506728817",
+          "name": "keystone",
+          "type": "identity"
+        },
+        {
+          "endpoints": [
+            {
+              "id": "28205dc282b940c6b886568b1072c0d9",
+              "interface": "internal",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9696"
+            },
+            {
+              "id": "fa785b51d0b141169ff3fc79ad80bc93",
+              "interface": "public",
+              "region": "RegionOne",
+              "region_id": "RegionOne",
+              "url": "http://10.1.223.4:9696"
+            }
+          ],
+          "id": "9a046271e0e8466089417eac185af326",
+          "name": "neutron",
+          "type": "network"
+        }
+      ],
+      "expires_at": "2024-02-24T17:34:28.000000Z",
+      "is_domain": false,
+      "issued_at": "2024-02-23T17:34:28.000000Z",
+      "methods": ["password"],
+      "project": {
+        "domain": {
+          "id": "default",
+          "name": "Default"
+        },
+        "id": "98c2e0f8ad1849a4b462c81f370c8eb6",
+        "name": "dan"
+      },
+      "roles": [
+        {
+          "id": "e1095560ba7444249614c1cc4e17abb6",
+          "name": "reader"
+        },
+        {
+          "id": "22b0938ef104433aa9aad125fa8e7847",
+          "name": "manager"
+        },
+        {
+          "id": "afff39af59a14aefad483b99b70029fe",
+          "name": "member"
+        }
+      ],
+      "user": {
+        "domain": {
+          "id": "default",
+          "name": "Default"
+        },
+        "id": "dbd5188947a843c98cb319aa7fad15fa",
+        "name": "dan",
+        "password_expires_at": null
+      }
+    }
+  },
+  "headers": {
+    "content-length": "4817",
+    "content-type": "application/json",
+    "date": "Fri, 23 Feb 2024 17:34:27 GMT",
+    "server": "Apache",
+    "vary": "X-Auth-Token",
+    "x-openstack-request-id": "req-9a5ae9c0-9805-4bfb-a4ed-db23a1327183",
+    "x-subject-token": "gAAAAABl2Nck1k8XhWD_gFQHQYHX3f9vg6DrlkrC8fTwxGVtKYGtojzOJ14yV27FSpBlp6Y4wVExWGfD1_qi1UgtmlcAyRIQZ9dBbfyRDJ9uMDk2L1HhZ5b1-_Q0q_MYInCOb4F4wt4tiyEakJcnnqxJOslRHzbvFRC2KF-TB4roOGFqTbNvDD0"
+  }
+}

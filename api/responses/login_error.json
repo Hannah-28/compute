@@ -1,1 +1,10 @@
-{"error": "Authentication failed. Please contact administrator.", "message": {"error": {"code": 401, "message": "The request you have made requires authentication.", "title": "Unauthorized"}}}
+{
+  "error": "Authentication failed. Please contact administrator.",
+  "message": {
+    "error": {
+      "code": 401,
+      "message": "The request you have made requires authentication.",
+      "title": "Unauthorized"
+    }
+  }
+}

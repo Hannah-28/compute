@@ -19,7 +19,7 @@ module.exports = {
         },
         secondary: {
           light: '#FFFFFF',
-          DEFAULT:'#0f1624',
+          DEFAULT: '#0f1624',
           dark: '#000000',
         },
       },
@@ -27,9 +27,9 @@ module.exports = {
         small: '0.5em',
         DEFAULT: '1.5em',
         large: '2em',
-        extra: '2.5em'
-      }
+        extra: '2.5em',
+      },
     },
   },
   plugins: [],
-}
+};

@@ -46,10 +46,8 @@ export default function SingleServer() {
     (s) => s.rebootSoftSingleServer
   );
   const [, setRebootSoft] = useState([]);
-  
-  const deleteSingleServerState = useSelector(
-    (s) => s.deleteSingleServer
-  );
+
+  const deleteSingleServerState = useSelector((s) => s.deleteSingleServer);
   const [, setDeleteSingleServer] = useState([]);
 
   const {
@@ -263,19 +261,28 @@ export default function SingleServer() {
   const deleteServer = () => {
     dispatch(deleteSingleServer(id));
   };
-  
+
   const keysToRender = [
     { path: 'server.name', displayName: 'Server Name' },
     { path: 'server.key_name', displayName: 'Key Name' },
     { path: 'server.OS-DCF:diskConfig', displayName: 'Disk Config' },
-    { path: 'server.OS-EXT-AZ:availability_zone', displayName: 'Availability Zone' },
+    {
+      path: 'server.OS-EXT-AZ:availability_zone',
+      displayName: 'Availability Zone',
+    },
     { path: 'server.OS-EXT-STS:vm_state', displayName: 'VM State' },
-    { path: 'server.addresses.External[0].addr', displayName: 'External Address' },
+    {
+      path: 'server.addresses.External[0].addr',
+      displayName: 'External Address',
+    },
     { path: 'server.flavor.id', displayName: 'Flavor ID' },
     { path: 'server.created', displayName: 'Server Created' },
-    { path: 'server.os-extended-volumes:volumes_attached[0].id', displayName: 'Volume Attached ID' },
+    {
+      path: 'server.os-extended-volumes:volumes_attached[0].id',
+      displayName: 'Volume Attached ID',
+    },
   ];
-  
+
   return (
     <UserSidebar title="Server Details">
       <div className="h-screen py-5 px-3 my-auto">
@@ -299,7 +306,7 @@ export default function SingleServer() {
                     value = value?.[key];
                   }
                 });
-  
+
                 return (
                   <div
                     key={path}
@@ -326,9 +333,10 @@ export default function SingleServer() {
                       }}
                       className="font-thin"
                     >
-                      {typeof value === 'object' ? JSON.stringify(value) : value}
+                      {typeof value === 'object'
+                        ? JSON.stringify(value)
+                        : value}
                     </p>
-                  
                   </div>
                 );
               })}

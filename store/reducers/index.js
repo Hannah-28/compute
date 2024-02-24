@@ -9,6 +9,10 @@ import startSingleServer from './start-single-server';
 import rebootHardSingleServer from './reboot-hard-single-server';
 import rebootSoftSingleServer from './reboot-soft-single-server';
 import deleteSingleServer from './delete-single-server';
+import createServer from './create-server';
+import getKeyPairs from './get-key-pairs';
+import getImages from './get-images';
+import getFlavors from './get-flavors';
 
 const baseReducers = combineReducers({
   register,
@@ -21,6 +25,10 @@ const baseReducers = combineReducers({
   rebootHardSingleServer,
   rebootSoftSingleServer,
   deleteSingleServer,
+  createServer,
+  getKeyPairs,
+  getImages,
+  getFlavors,
 });
 
 export default baseReducers;

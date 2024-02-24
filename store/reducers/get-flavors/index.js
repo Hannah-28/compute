@@ -1,36 +1,38 @@
 import * as types from '../../action-types';
-import { getProfile as initialState } from '../initialStates';
+import { getFlavors as initialState } from '../initialStates';
 
-const getProfile = (state = initialState, action) => {
-  switch (action.type) {
-    case types.GET_PROFILE_START:
+const getFlavors = (state = initialState, action) => {
+  const { payload, type } = action;
+
+  switch (type) {
+    case types.GET_FLAVORS_START:
       return {
         ...state,
         isLoading: true,
       };
-    case types.GET_PROFILE_SUCCESS:
+    case types.GET_FLAVORS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isSuccessful: true,
-        data: action.payload,
+        data: payload,
       };
-    case types.GET_PROFILE_FAIL:
+    case types.GET_FLAVORS_FAIL:
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+        error: payload,
       };
-    case types.GET_PROFILE_CLEANUP:
+    case types.GET_FLAVORS_CLEANUP:
       return {
         ...state,
+        error: null,
         isLoading: false,
         isSuccessful: false,
-        error: null,
       };
     default:
       return state;
   }
 };
 
-export default getProfile;
+export default getFlavors;

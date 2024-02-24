@@ -67,3 +67,31 @@ export const deleteSingleServer = {
   data: null,
   error: null,
 };
+
+export const createServer = {
+  isLoading: false,
+  isSuccessful: false,
+  data: null,
+  error: null,
+};
+
+export const getKeyPairs = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null,
+};
+
+export const getImages = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null,
+};
+
+export const getFlavors = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null,
+};

@@ -39,7 +39,7 @@ function UserSidebar({ title, children }) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [collapsed]);
 
   return (
     <div>

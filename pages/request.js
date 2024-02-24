@@ -1,27 +1,120 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import UserSidebar from '@/components/UserSidebar';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  createServer,
+  createServerCleanup,
+} from '@/store/actions/create-server';
+import { getKeyPairs, getKeyPairsCleanup } from '@/store/actions/get-key-pairs';
+import { getImages, getImagesCleanup } from '@/store/actions/get-images';
+import { getFlavors, getFlavorsCleanup } from '@/store/actions/get-flavors';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Request() {
   const formikRef = useRef();
+  const dispatch = useDispatch();
+  const createServerState = useSelector((s) => s.createServer);
+  const getKeyPairsState = useSelector((s) => s.getKeyPairs);
+  const getImagesState = useSelector((s) => s.getImages);
+  const getFlavorsState = useSelector((s) => s.getFlavors);
+  const [keyPairs, setKeyPairs] = useState([]);
+  const [images, setImages] = useState([]);
+  const [flavors, setFlavors] = useState([]);
+  const router = useRouter();
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().trim().required('FirstName is required'),
+    name: Yup.string().trim().required('Name is required'),
+    key_name: Yup.string().trim().required('Key pair is required'),
+    imageRef: Yup.string().trim().required('Image is required'),
+    flavorRef: Yup.string().trim().required('Flavor is required'),
   });
- 
+
+  useEffect(() => {
+    dispatch(getKeyPairs());
+    dispatch(getImages());
+    dispatch(getFlavors());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (getKeyPairsState.isSuccessful) {
+      setKeyPairs(getKeyPairsState.data);
+      dispatch(getKeyPairsCleanup());
+    } else if (getKeyPairsState.error) {
+      dispatch(getKeyPairsCleanup());
+    }
+  }, [dispatch, getKeyPairsState]);
+
+  useEffect(() => {
+    if (getImagesState.isSuccessful) {
+      setImages(getImagesState.data);
+      dispatch(getImagesCleanup());
+    } else if (getImagesState.error) {
+      dispatch(getImagesCleanup());
+    }
+  }, [dispatch, getImagesState]);
+
+  useEffect(() => {
+    if (getFlavorsState.isSuccessful) {
+      setFlavors(getFlavorsState.data);
+      dispatch(getFlavorsCleanup());
+    } else if (getFlavorsState.error) {
+      dispatch(getFlavorsCleanup());
+    }
+  }, [dispatch, getFlavorsState]);
+
+  useEffect(() => {
+    if (createServerState.isSuccessful) {
+      if (formikRef.current) {
+        formikRef.current.resetForm();
+      }
+      toast.success('Server created successfully!!!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      setTimeout(() => {
+        dispatch(createServerCleanup());
+        router.push('/resources');
+      }, 3000);
+    } else if (createServerState.error) {
+      toast.error(`${createServerState.error}`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+      dispatch(createServerCleanup());
+    }
+  }, [createServerState, dispatch, router]);
+
   return (
     <UserSidebar title="Request">
       <div className="h-auto py-5 px-3 my-auto">
         <>
           <h1 className="mb-8 text-2xl font-bold">Request VM Creation</h1>
           <form className="shadow-md bg-gray-50 rounded-md p-7 mb-8">
-            {/* <h1 className="mb-4 text-2xl font-bold">Create your account</h1> */}
             <Formik
               initialValues={{
-                firstName: '',
+                name: '',
+                key_name: '',
+                imageRef: '',
+                flavorRef: '',
               }}
-              onSubmit={({ setSubmitting }) => {
+              onSubmit={(values, { setSubmitting }) => {
+                dispatch(createServer(values));
                 setSubmitting(false);
               }}
               validationSchema={validationSchema}
@@ -38,145 +131,83 @@ export default function Request() {
               }) => (
                 <div className="text-xs lg:text-base">
                   <div className="mb-4">
-                    <label>Workflow ID name</label>
-                    <input
-                      name="firstName"
-                      type="text"
-                      placeholder="Workflow ID name"
-                      value={values.firstName}
-                      onChange={handleChange('firstName')}
-                      onBlur={handleBlur('firstName')}
-                      className="text-xs lg:text-base"
-                    />
-                    {errors.firstName && touched.firstName ? (
-                      <p style={{ color: 'red' }}>{errors.firstName}</p>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label>Username selection</label>
-                    <select
-                      name="party"
-                      type="text"
-                      value={values.party}
-                      onChange={handleChange('party')}
-                      onBlur={handleBlur('party')}
-                      className="text-xs lg:text-base"
-                    >
-                      <option value="CP">select</option>
-                      <option value="CP">name1</option>
-                      <option value="CP">name2</option>
-                    </select>
-                  </div>
-                  <div className="mb-4">
-                    <label>Project name</label>
-                    <select
-                      name="party"
-                      type="text"
-                      value={values.party}
-                      onChange={handleChange('party')}
-                      onBlur={handleBlur('party')}
-                      className="text-xs lg:text-base"
-                    >
-                      <option value="CP">select</option>
-                      <option value="CP">name1</option>
-                      <option value="CP">name2</option>
-                    </select>
-                  </div>
-                  <div className="mb-4">
-                    <label>Number of VM</label>
-                    <input
-                      name="firstName"
-                      type="text"
-                      placeholder="Number of VM"
-                      value={values.firstName}
-                      onChange={handleChange('firstName')}
-                      onBlur={handleBlur('firstName')}
-                      className="text-xs lg:text-base"
-                    />
-                    {errors.firstName && touched.firstName ? (
-                      <p style={{ color: 'red' }}>{errors.firstName}</p>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label>Flavor</label>
-                    <select
-                      name="party"
-                      type="text"
-                      value={values.party}
-                      onChange={handleChange('party')}
-                      onBlur={handleBlur('party')}
-                      className="text-xs lg:text-base"
-                    >
-                      <option value="CP">select</option>
-                      <option value="CP">name1</option>
-                      <option value="CP">name2</option>
-                    </select>
-                  </div>
-                  <div className="mb-4">
-                    <label>Time period days</label>
-                    <input
-                      name="firstName"
-                      type="text"
-                      placeholder="Time period days"
-                      value={values.firstName}
-                      onChange={handleChange('firstName')}
-                      onBlur={handleBlur('firstName')}
-                      className="text-xs lg:text-base"
-                    />
-                    {errors.firstName && touched.firstName ? (
-                      <p style={{ color: 'red' }}>{errors.firstName}</p>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label>Purpose of VM</label>
-                    <input
-                      name="firstName"
-                      type="text"
-                      placeholder="Purpose of VM"
-                      value={values.firstName}
-                      onChange={handleChange('firstName')}
-                      onBlur={handleBlur('firstName')}
-                      className="text-xs lg:text-base"
-                    />
-                    {errors.firstName && touched.firstName ? (
-                      <p style={{ color: 'red' }}>{errors.firstName}</p>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
                     <label>VM name</label>
                     <input
-                      name="firstName"
+                      name="name"
                       type="text"
-                      placeholder="VM name"
-                      value={values.firstName}
-                      onChange={handleChange('firstName')}
-                      onBlur={handleBlur('firstName')}
+                      value={values.name}
+                      onChange={handleChange('name')}
+                      onBlur={handleBlur('name')}
                       className="text-xs lg:text-base"
                     />
-                    {errors.firstName && touched.firstName ? (
-                      <p style={{ color: 'red' }}>{errors.firstName}</p>
+                    {errors.name && touched.name ? (
+                      <p style={{ color: 'red' }}>{errors.name}</p>
                     ) : null}
                   </div>
-                  <div className="mb-10">
-                    <label>Image</label>
+
+                  <div className="mb-4">
+                    <label>Key Name</label>
                     <select
-                      name="party"
+                      name="key_name"
                       type="text"
-                      value={values.party}
-                      onChange={handleChange('party')}
-                      onBlur={handleBlur('party')}
+                      value={values.key_name}
+                      onChange={handleChange('key_name')}
+                      onBlur={handleBlur('key_name')}
                       className="text-xs lg:text-base"
                     >
-                      <option value="CP">select</option>
-                      <option value="CP">name1</option>
-                      <option value="CP">name2</option>
+                      <option value="">select</option>
+                      {keyPairs?.flavors?.keypairs.map((data, i) => (
+                        <option value={data.keypair.name} key={i}>
+                          {data.keypair.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
+
+                  <div className="mb-4">
+                    <label>Image</label>
+                    <select
+                      name="imageRef"
+                      type="text"
+                      value={values.imageRef}
+                      onChange={handleChange('imageRef')}
+                      onBlur={handleBlur('imageRef')}
+                      className="text-xs lg:text-base"
+                    >
+                      <option value="">select</option>
+                      {images?.images?.images.map((data, i) => (
+                        <option value={data.id} key={i}>
+                          {data.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="mb-10">
+                    <label>Flavor</label>
+                    <select
+                      name="flavorRef"
+                      type="text"
+                      value={values.flavorRef}
+                      onChange={handleChange('flavorRef')}
+                      onBlur={handleBlur('flavorRef')}
+                      className="text-xs lg:text-base"
+                    >
+                      <option value="">select</option>
+                      {flavors?.flavors?.flavors.map((data, i) => (
+                        <option value={data.id} key={i}>
+                          Name: {data.name} Disk: {data.disk} Ram: {data.ram}{' '}
+                          Vcpus: {data.vcpus}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   <button
                     type="submit"
                     className="border-black text-white hover:bg-black px-3 py-2 rounded-md bg-zinc-900 text-xs lg:text-base font-medium"
                     onClick={handleSubmit}
-                    disabled={!isValid}
+                    disabled={!isValid || createServerState.isLoading}
                   >
                     Submit
                   </button>
@@ -186,6 +217,19 @@ export default function Request() {
           </form>
         </>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </UserSidebar>
   );
 }

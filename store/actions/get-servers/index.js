@@ -27,7 +27,7 @@ export const getServers = () => async (dispatch) => {
       path: '/servers',
       method: 'GET',
     };
-    const data  = await AxiosCall(requestObj);
+    const data = await AxiosCall(requestObj);
     dispatch(getServersSuccess(data));
   } catch (err) {
     console.log(err);
