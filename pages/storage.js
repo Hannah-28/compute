@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import UserSidebar from '@/components/UserSidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getServers, getServersCleanup } from '@/store/actions/get-servers';
+import { getVolumes, getVolumesCleanup } from '@/store/actions/get-volumes';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.css';
 import Router from 'next/router';
+import Link from 'next/link';
 
-export default function Servers() {
+export default function Storage() {
   const dispatch = useDispatch();
-  const getServersState = useSelector((s) => s.getServers);
-  const [servers, setServers] = useState([]);
+  const getVolumesState = useSelector((s) => s.getVolumes);
+  const [volumes, setVolumes] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(getServers());
+    dispatch(getVolumes());
   }, [dispatch]);
 
   useEffect(() => {
-    if (getServersState.isSuccessful) {
-      setServers(getServersState.data);
-      dispatch(getServersCleanup());
-    } else if (getServersState.error) {
-      toast.error(`${getServersState.error}`, {
+    if (getVolumesState.isSuccessful) {
+      setVolumes(getVolumesState.data);
+      dispatch(getVolumesCleanup());
+    } else if (getVolumesState.error) {
+      toast.error(`${getVolumesState.error}`, {
         position: 'top-center',
         autoClose: 3000,
         hideProgressBar: false,
@@ -33,33 +34,41 @@ export default function Servers() {
         theme: 'light',
       });
       setTimeout(() => {
-        dispatch(getServersCleanup());
+        dispatch(getVolumesCleanup());
         router.push('/profile');
       }, 3000);
     }
-  }, [dispatch, getServersState, router]);
+  }, [dispatch, getVolumesState, router]);
 
   function sendProps(id) {
     Router.push({
-      pathname: '/single-server',
+      pathname: '/single-volume',
       query: {
         id,
       },
     });
   }
+
   return (
-    <UserSidebar title="Servers">
+    <UserSidebar title="Volumes">
       <div className="h-screen py-5 px-3 my-auto">
-        {servers.length === 0 ? (
+        {volumes.length === 0 ? (
           <>
             <div className="spinner-border" role="status"></div>
           </>
         ) : (
           <>
-            <h1 className="mb-8 text-2xl font-bold">Servers</h1>
-
+            <h1 className="mb-8 text-2xl font-bold">Volumes</h1>
+            <div className='grid justify-end mb-6 w-full flex-wrap'>
+              <Link
+                className="w-fit border-black text-white hover:bg-black hover:cursor-pointer px-2 py-1 rounded-md bg-zinc-900 text-sm font-medium"
+                href="/create-volume"
+              >
+                CREATE VOLUME
+              </Link>
+            </div>
             <div className="text-xs lg:text-base flex flex-wrap space-x-8">
-              {servers.servers.map((data, i) => (
+              {volumes?.images?.volumes.map((data, i) => (
                 <div
                   key={i}
                   className="shadow-md bg-gray-50 rounded-md w-fit p-7 mb-8 text-center grid gap-4"

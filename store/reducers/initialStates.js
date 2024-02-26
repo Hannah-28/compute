@@ -95,3 +95,38 @@ export const getFlavors = {
   data: [],
   error: null,
 };
+
+export const createVolume = {
+  isLoading: false,
+  isSuccessful: false,
+  data: null,
+  error: null,
+};
+
+export const getVolumes = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null,
+};
+
+export const getSingleVolume = {
+  isLoading: false,
+  isSuccessful: false,
+  data: [],
+  error: null,
+};
+
+export const deleteSingleVolume = {
+  isLoading: false,
+  isSuccessful: false,
+  data: null,
+  error: null,
+};
+
+export const extendSingleVolumeSize = {
+  isLoading: false,
+  isSuccessful: false,
+  data: null,
+  error: null,
+};

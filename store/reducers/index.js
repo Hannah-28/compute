@@ -13,6 +13,11 @@ import createServer from './create-server';
 import getKeyPairs from './get-key-pairs';
 import getImages from './get-images';
 import getFlavors from './get-flavors';
+import createVolume from './create-volume';
+import getVolumes from './get-volumes';
+import getSingleVolume from './get-single-volume';
+import deleteSingleVolume from './delete-single-volume';
+import extendSingleVolumeSize from './extend-single-volume-size';
 
 const baseReducers = combineReducers({
   register,
@@ -29,6 +34,11 @@ const baseReducers = combineReducers({
   getKeyPairs,
   getImages,
   getFlavors,
+  createVolume,
+  getVolumes,
+  getSingleVolume,
+  deleteSingleVolume,
+  extendSingleVolumeSize
 });
 
 export default baseReducers;

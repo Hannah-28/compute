@@ -285,7 +285,7 @@ export default function SingleServer() {
 
   return (
     <UserSidebar title="Server Details">
-      <div className="h-screen py-5 px-3 my-auto">
+      <div className="h-full py-5 px-3 my-auto">
         {Object.keys(singleServer).length === 0 ? (
           <div className="spinner-border" role="status"></div>
         ) : (
