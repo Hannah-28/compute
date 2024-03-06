@@ -3,6 +3,8 @@ import UserSidebar from '@/components/UserSidebar';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsage, getUsageCleanup } from '@/store/actions/get-usage';
+import DataTable from 'react-data-table-component';
+import moment from 'moment';
 
 export default function Usage() {
   const router = useRouter();
@@ -14,10 +16,10 @@ export default function Usage() {
 
   useEffect(() => {
     const body = {
-      'project_id': id,
-      // 'rows_to_return': 5,
+      project_id: id,
+      rows_to_return: 10,
     };
-    dispatch(getUsage());
+    dispatch(getUsage(body));
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -29,10 +31,41 @@ export default function Usage() {
     }
   }, [dispatch, getUsageState]);
 
-  console.log(usage);
+  const columns = [
+    {
+      name: 'CPU Hours',
+      selector: (row) => row.cpu_hours,
+      sortable: true,
+    },
+    {
+      name: 'Disk GB Hours',
+      selector: (row) => row.disk_gb_hours,
+      sortable: true,
+    },
+    {
+      name: 'Servers',
+      selector: (row) => row.servers,
+      sortable: true,
+    },
+    {
+      name: 'Start Date',
+      selector: (row) => row.start_date,
+      sortable: true,
+    },
+    {
+      name: 'End Date',
+      selector: (row) => row.end_date,
+      sortable: true,
+    },
+  ];
+
+  const data = usage?.data;
+  console.log(usage.data);
   return (
     <UserSidebar title="Usage">
       <h1 className="mb-8 text-2xl font-bold">Usage</h1>
+
+     <DataTable columns={columns} data={data} /> 
     </UserSidebar>
   );
 }
