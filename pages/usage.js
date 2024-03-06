@@ -58,14 +58,34 @@ export default function Usage() {
       sortable: true,
     },
   ];
-
-  const data = usage?.data;
-  console.log(usage.data);
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: 'rgba(187, 204, 221, 1)',
+      },
+    },
+  };
   return (
     <UserSidebar title="Usage">
-      <h1 className="mb-8 text-2xl font-bold">Usage</h1>
-
-     <DataTable columns={columns} data={data} /> 
+      <div className="h-screen py-5 px-3 my-auto">
+        {usage.length === 0 ? (
+          <>
+            <div className="spinner-border" role="status"></div>
+          </>
+        ) : (
+          <>
+            <h1 className="mb-8 text-2xl font-bold">Usage</h1>
+            <div>
+              <DataTable
+                columns={columns}
+                customStyles={customStyles}
+                data={usage.data}
+                pagination
+              />
+            </div>
+          </>
+        )}
+      </div>
     </UserSidebar>
   );
 }
