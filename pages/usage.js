@@ -49,12 +49,12 @@ export default function Usage() {
     },
     {
       name: 'Start Date',
-      selector: (row) => row.start_date,
+      selector: (row) => moment(row.start_date).format('MM/DD/YYYY'),
       sortable: true,
     },
     {
       name: 'End Date',
-      selector: (row) => row.end_date,
+      selector: (row) => moment(row.end_date).format('MM/DD/YYYY'),
       sortable: true,
     },
   ];
