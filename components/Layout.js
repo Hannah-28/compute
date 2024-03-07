@@ -17,6 +17,12 @@ export default function Layout({ title, children }) {
 
       <div className="w-full overlay px-4 md:px-10 grid z-50 grid-cols-2 h-auto md:h-16 pt-5 md:pt-0 justify-between items-center bg-secondary text-secondary-light fixed top-0">
         <div className="flex space-x-2 pb-5 font-bold md:pb-0">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={30}
+            height={30}
+          />
           <h1>IridiumGPU</h1>
           <div className="h-2 w-2 rounded-full bg-secondary-light"></div>
         </div>
