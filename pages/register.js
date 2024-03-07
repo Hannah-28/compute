@@ -57,6 +57,7 @@ export default function Register() {
       dispatch(registerCleanup());
     }
   }, [registerState, dispatch, router]);
+
   return (
     <Layout title="Register">
       <div className="max-w-6xl xl:max-w-2xl mx-auto px-8 mb-10 mt-24 h-screen">

@@ -61,17 +61,21 @@ export default function Usage() {
   const customStyles = {
     headCells: {
       style: {
-        backgroundColor: 'rgba(187, 204, 221, 1)',
+        backgroundColor: '#05052D',
+        color: '#FFF',
       },
     },
   };
+
   return (
     <UserSidebar title="Usage">
       <div className="h-screen py-5 px-3 my-auto">
-        {usage.length === 0 ? (
-          <>
-            <div className="spinner-border" role="status"></div>
-          </>
+        {usage?.data?.length === undefined ? (
+          <div
+            className="animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-primary-dark rounded-full dark:text-primary-dark"
+            role="status"
+            aria-label="loading"
+          ></div>
         ) : (
           <>
             <h1 className="mb-8 text-2xl font-bold">Usage</h1>
