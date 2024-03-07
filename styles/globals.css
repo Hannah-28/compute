@@ -35,7 +35,7 @@ option {
   filter: opacity(0.5) drop-shadow(0 0 0 rgb(0 0 0));
 }
 .ps-menuitem-root {
-  @apply hover:text-gray-600;
+  @apply hover:text-primary-dark;
 }
 .sidebarHeader {
   display: flex;
@@ -59,6 +59,9 @@ option {
   background: #05052D;
 }
 
+.ps-menuitem-root {
+  color: #39ACAC;
+}
 ::-webkit-scrollbar-thumb {
   background: rgb(0, 168, 143);
   -webkit-border-radius: 1ex;
