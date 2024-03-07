@@ -79,12 +79,14 @@ export default function Usage() {
         ) : (
           <>
             <h1 className="mb-8 text-2xl font-bold">Usage</h1>
-            <div>
+            <div className='w-full'>
               <DataTable
                 columns={columns}
                 customStyles={customStyles}
                 data={usage.data}
                 pagination
+                // className='w-full 2xl:max-w-screen-lg px-5 pt-5 bg-primary-dark'
+                className='w-full 2xl:max-w-screen-lg'
               />
             </div>
           </>
