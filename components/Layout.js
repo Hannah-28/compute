@@ -23,8 +23,8 @@ export default function Layout({ title, children }) {
             width={30}
             height={30}
           />
-          <h1>IridiumGPU</h1>
-          <div className="h-2 w-2 rounded-full bg-secondary-light"></div>
+          <h1 className='text-primary-dark'>IridiumGPU</h1>
+          <div className="h-2 w-2 rounded-full bg-primary-dark"></div>
         </div>
 
         <ul className="hidden md:flex space-x-6 justify-self-end items-center">
@@ -176,7 +176,7 @@ export default function Layout({ title, children }) {
             />
           </Link>
         </div>
-        <p className="text-xs leading-9 tracking-wide text-gray-200 font-thin">
+        <p className="text-xs leading-9 tracking-wide text-gray-200 font-base">
           &copy; {new Date().toLocaleDateString('en-us', { year: 'numeric' })}{' '}
           IridiumGPU, ALL RIGHTS RESERVED.
         </p>

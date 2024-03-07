@@ -275,7 +275,7 @@ function UserSidebar({ title, children }) {
                 />
               </Link>
             </div>
-            <p className="text-xs leading-9 tracking-wide text-gray-200 font-thin">
+            <p className="text-xs leading-9 tracking-wide text-gray-200 font-base">
               &copy;{' '}
               {new Date().toLocaleDateString('en-us', { year: 'numeric' })}{' '}
               IridiumGPU, ALL RIGHTS RESERVED.
