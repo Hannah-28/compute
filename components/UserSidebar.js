@@ -46,6 +46,7 @@ function UserSidebar({ title, children }) {
       <Head>
         <title>{title ? 'IridiumGPU | ' + title : 'IridiumGPU '}</title>
         <meta name="description" content="Cloud GPU" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <div className="flex h-full">
         <Sidebar
