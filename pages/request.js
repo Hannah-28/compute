@@ -28,9 +28,12 @@ export default function Request() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().trim().required('Name is required'),
+    username: Yup.string().trim().required('Username is required'),
     key_name: Yup.string().trim().required('Key pair is required'),
     imageRef: Yup.string().trim().required('Image is required'),
     flavorRef: Yup.string().trim().required('Flavor is required'),
+    model_size: Yup.string().trim().required('Model size is required'),
+    password: Yup.string().trim().required('Password is required'),
   });
 
   useEffect(() => {
@@ -100,11 +103,12 @@ export default function Request() {
     }
   }, [createServerState, dispatch, router]);
 
-  
   return (
     <UserSidebar title="Request">
-      <div className="h-screen py-5 px-3 my-auto">
-        {(keyPairs.length === 0 && images.length === 0 && flavors.length === 0) ? (
+      <div className="min-h-screen py-5 px-3 my-auto">
+        {keyPairs.length === 0 &&
+        images.length === 0 &&
+        flavors.length === 0 ? (
           <div
             className="animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-primary-dark rounded-full dark:text-primary-dark"
             role="status"
@@ -117,9 +121,12 @@ export default function Request() {
               <Formik
                 initialValues={{
                   name: '',
+                  username: '',
                   key_name: '',
                   imageRef: '',
                   flavorRef: '',
+                  model_size: '',
+                  password: '',
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   dispatch(createServer(values));
@@ -150,6 +157,21 @@ export default function Request() {
                       />
                       {errors.name && touched.name ? (
                         <p style={{ color: 'red' }}>{errors.name}</p>
+                      ) : null}
+                    </div>
+
+                    <div className="mb-4">
+                      <label>VM username</label>
+                      <input
+                        name="username"
+                        type="text"
+                        value={values.username}
+                        onChange={handleChange('username')}
+                        onBlur={handleBlur('username')}
+                        className="text-xs lg:text-base"
+                      />
+                      {errors.username && touched.username ? (
+                        <p style={{ color: 'red' }}>{errors.username}</p>
                       ) : null}
                     </div>
 
@@ -191,7 +213,7 @@ export default function Request() {
                       </select>
                     </div>
 
-                    <div className="mb-10">
+                    <div className="mb-4">
                       <label>Flavor</label>
                       <select
                         name="flavorRef"
@@ -209,6 +231,37 @@ export default function Request() {
                           </option>
                         ))}
                       </select>
+                    </div>
+
+                    <div className="mb-4">
+                      <label>Model size</label>
+                      <select
+                        name="model_size"
+                        type="text"
+                        value={values.model_size}
+                        onChange={handleChange('model_size')}
+                        onBlur={handleBlur('model_size')}
+                        className="text-xs lg:text-base"
+                      >
+                        <option value="">select</option>
+                        <option value="2b">2b</option>
+                        <option value="7b">7b</option>
+                      </select>
+                    </div>
+
+                    <div className="mb-10">
+                      <label>VM password</label>
+                      <input
+                        name="password"
+                        type="password"
+                        value={values.password}
+                        onChange={handleChange('password')}
+                        onBlur={handleBlur('password')}
+                        className="text-xs lg:text-base"
+                      />
+                      {errors.password && touched.password ? (
+                        <p style={{ color: 'red' }}>{errors.password}</p>
+                      ) : null}
                     </div>
 
                     <button

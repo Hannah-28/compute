@@ -37,6 +37,9 @@ option {
 .ps-menuitem-root {
   @apply hover:text-primary-dark;
 }
+/* nav.sc-iKOmoZ.hVPalX.rdt_Pagination{
+  @apply w-10
+} */
 .sidebarHeader {
   display: flex;
   align-items: center;
@@ -70,4 +73,10 @@ option {
 
 ::-webkit-scrollbar-corner {
   background: #05052D;
+}
+
+@media only screen and (min-width: 1536px) {
+  nav.sc-iKOmoZ.hVPalX.rdt_Pagination {
+    max-width: 1024px
+  }
 }
